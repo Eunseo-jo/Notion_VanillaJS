@@ -37,6 +37,12 @@ export default class SidebarHeader {
       const titleSuggestions = searchAutoComplete(keyword);
       if (titleSuggestions) this.renderTitleSuggestions(titleSuggestions);
 
+      if (!keyword) {
+        this.$suggestTitle.innerHTML = "";
+      } else if (titleSuggestions) {
+        this.renderTitleSuggestions(titleSuggestions);
+      }
+
       // Sidebar로 키워드 보내주기
       searchResults(keyword);
     });
@@ -79,6 +85,7 @@ export default class SidebarHeader {
     }
 
     this.$suggestTitle.addEventListener("click", (event) => {
+      console.log("event!!!!!");
       const clickedSuggestion = event.target.closest(".suggestion-list");
       if (clickedSuggestion) {
         const suggestionId = clickedSuggestion.dataset.id;
