@@ -1,0 +1,142 @@
+/* Document Container Style */
+.document-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding-left: 50px;
+  box-sizing: border-box;
+}
+
+.document-container div:focus {
+  outline: none;
+}
+
+/* Editor Container Style */
+.editor-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sub Document List Style */
+.sub-document-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-document-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 30px;
+  cursor: pointer;
+}
+
+.sub-document-item:hover {
+  background-color: #f1f1f0;
+}
+
+.sub-document-item p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Title Style */
+.title {
+  border: none;
+  font-size: 2em;
+  font-weight: bold;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+/* Text Options Style */
+.text-options {
+  display: flex;
+  flex-direction: row;
+  z-index: 10;
+  background-color: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+}
+
+.text-option {
+  display: flex;
+  height: 40px;
+  font-size: 14px;
+  align-items: stretch;
+}
+
+.text-options button {
+  background-color: #ffffff;
+  padding: 0 10px;
+}
+
+.text-options button:hover {
+  background-color: #f1f1f0;
+}
+
+/* Color List Style */
+.color-list {
+  display: none;
+}
+
+.color-list button {
+  background-color: #ffffff;
+  height: 20px;
+  width: 20px;
+}
+
+.color-list.show {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 5px;
+  background-color: #ffffff;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+}
+
+/* Color Option Style */
+.color-option {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  z-index: 20;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.color-option:hover {
+  background-color: #f1f1f0;
+}
+
+.color-option span {
+  flex-grow: 1;
+  margin-left: 4px;
+}
+
+.color-option button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px inset;
+  background-color: transparent;
+  margin-left: 4px;
+}
+
+/* Content Style */
+.content {
+  border: none !important;
+  width: 600px;
+  border: 1px solid black;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}

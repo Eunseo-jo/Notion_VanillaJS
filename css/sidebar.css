@@ -1,0 +1,184 @@
+/* Header Container Styles */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.header-container img {
+  cursor: pointer;
+}
+
+/* No Subpages Styles */
+.no-subpages {
+  color: gray;
+  margin-left: 35px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  cursor: auto;
+}
+
+/* Document Search Container Styles */
+.document-search-container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.document-search-container.show .search-suggestions {
+  display: block;
+}
+
+.search-suggestions {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
+  background-color: white;
+  border-radius: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px;
+}
+
+.search-suggestions span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-suggestions.suggestion-list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.search-suggestions.suggestion-list:hover {
+  background-color: #f1f1f0;
+}
+
+/* Sidebar Container Styles */
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  background-color: #fbfbfa;
+  box-sizing: border-box;
+  text-align: left;
+  height: 100%;
+}
+
+.sidebar-container.fold-sidebar {
+  width: 30px;
+}
+
+/* Sidebar List Styles */
+.sidebar-list {
+  height: 100%;
+  width: 300px;
+  overflow-y: auto;
+}
+
+.sidebar-list p {
+  text-align: center;
+  margin: 8px;
+}
+
+.sidebar-list li {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  cursor: pointer;
+  justify-content: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-list ul {
+  padding-left: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* Document List Items Styles */
+.new-document {
+  height: 40px;
+  margin-bottom: 5px;
+  justify-self: flex-end;
+  margin-top: 10px;
+}
+
+.document-icon {
+  margin-right: 5px;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 32px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.list-item.active {
+  background-color: #f1f1f0;
+}
+
+.list-item:hover {
+  background-color: #f1f1f0;
+}
+
+.document-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.document-info span {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Item Options Styles */
+.item-options {
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.list-item:hover .item-options {
+  visibility: visible;
+}
+
+/* Toggle Button Styles */
+.toggle-button {
+  height: 18px;
+  width: 18px;
+  cursor: pointer;
+}
