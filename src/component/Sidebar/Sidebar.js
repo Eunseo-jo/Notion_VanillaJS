@@ -121,7 +121,7 @@ export default class Sidebar {
   };
 
   render = () => {
-    const sidebarState = getItem(STORAGE_KEY, false);
+    const sidebarState = getItem(STORAGE_KEY, true);
     this.$target.innerHTML = "";
     this.sidebarList.render();
 
