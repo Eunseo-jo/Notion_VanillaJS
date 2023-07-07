@@ -52,9 +52,10 @@ export default class SidebarHeader {
       this.$searchBarContainer.classList.toggle("show");
       this.$suggestTitle.style.display = "flex";
     });
-    this.$searchBar.addEventListener("blur", () =>
-      this.$searchBarContainer.classList.toggle("show")
-    );
+    this.$searchBarContainer.addEventListener("onblur", () => {
+      this.$suggestTitle.style.display = "none";
+      this.$searchBarContainer.classList.toggle("show");
+    });
 
     // 자동완성 리스트
     this.$suggestTitle = document.createElement("div");
@@ -90,7 +91,7 @@ export default class SidebarHeader {
       if (clickedSuggestion) {
         const suggestionId = clickedSuggestion.dataset.id;
         //클릭한 문서로 이동하기
-        this.pushToUrl(suggestionId);
+        this.pushToUrl("/documents/" + suggestionId);
       }
       this.$suggestTitle.style.display = "none";
     });
