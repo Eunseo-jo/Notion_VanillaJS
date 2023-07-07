@@ -44,7 +44,7 @@ export default class SidebarStore {
         return { ...doc, title };
       }
       //하위 문서 확인
-      else if (doc.documents.length > 0) {
+      else if (doc.documents?.length > 0) {
         return {
           ...doc,
           documents: this.updateDocumentTitle(id, title, doc.documents),
