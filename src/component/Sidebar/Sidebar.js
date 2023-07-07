@@ -1,9 +1,8 @@
 import { getItem, setItem } from "../../utils/storage.js";
+import { SIDEBAR_TOGGLE_STORAGE_KEY } from "../../utils/constants.js";
 import { push } from "../../utils/router.js";
 import SidebarHeader from "./SidebarHeader.js";
 import SidebarList from "./SidebarList.js";
-
-const STORAGE_KEY = "show-sidebar";
 
 export default class Sidebar {
   constructor({ $target, sidebarStore, clearDocument }) {
@@ -104,7 +103,7 @@ export default class Sidebar {
   //사이드바 전체 숨기기 & 보여지기
   toggleSidebar = () => {
     const isFolded = this.$target.classList.contains("fold-sidebar");
-    setItem(STORAGE_KEY, isFolded);
+    setItem(SIDEBAR_TOGGLE_STORAGE_KEY, isFolded);
     this.$target.classList.toggle("fold-sidebar");
     this.render();
   };
@@ -121,7 +120,7 @@ export default class Sidebar {
   };
 
   render = () => {
-    const sidebarState = getItem(STORAGE_KEY, true);
+    const sidebarState = getItem(SIDEBAR_TOGGLE_STORAGE_KEY, true);
     this.$target.innerHTML = "";
     this.sidebarList.render();
 

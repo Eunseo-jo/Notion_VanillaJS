@@ -1,7 +1,6 @@
 import { getItem, setItem } from "../../utils/storage.js";
+import { SIDEBAR_LIST_STORAGE_KEY } from "../../utils/constants.js";
 import { push } from "../../utils/router.js";
-
-const STORAGE_KEY = "isExpanded";
 
 export default class SidebarList {
   constructor({
@@ -63,14 +62,14 @@ export default class SidebarList {
 
   //하위 문서 리스트 토글
   toggleList = (target) => {
-    const expendedItem = getItem(STORAGE_KEY, []);
+    const expendedItem = getItem(SIDEBAR_LIST_STORAGE_KEY, []);
     const targetId = target.dataset.id;
     if (expendedItem.includes(targetId)) {
       setItem(
-        STORAGE_KEY,
+        SIDEBAR_LIST_STORAGE_KEY,
         expendedItem.filter((item) => item !== targetId)
       );
-    } else setItem(STORAGE_KEY, [...expendedItem, targetId]);
+    } else setItem(SIDEBAR_LIST_STORAGE_KEY, [...expendedItem, targetId]);
 
     this.render();
   };
@@ -82,7 +81,7 @@ export default class SidebarList {
     let listHTML = `<ul>`;
     documentData.forEach(({ id, title, documents }) => {
       const hasSubList = documents && documents.length > 0;
-      const expanded = getItem(STORAGE_KEY, []);
+      const expanded = getItem(SIDEBAR_LIST_STORAGE_KEY, []);
       const isOpened = expanded.includes(String(id));
 
       listHTML += this.listItem(id, title, parseInt(postId), isOpened);
