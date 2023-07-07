@@ -48,9 +48,10 @@ export default class SidebarHeader {
     });
 
     // 자동완성 리스트 렌더링 보여주기 & 숨기기
-    this.$searchBar.addEventListener("focus", () =>
-      this.$searchBarContainer.classList.toggle("show")
-    );
+    this.$searchBar.addEventListener("focus", () => {
+      this.$searchBarContainer.classList.toggle("show");
+      this.$suggestTitle.style.display = "flex";
+    });
     this.$searchBar.addEventListener("blur", () =>
       this.$searchBarContainer.classList.toggle("show")
     );
@@ -85,13 +86,13 @@ export default class SidebarHeader {
     }
 
     this.$suggestTitle.addEventListener("click", (event) => {
-      console.log("event!!!!!");
       const clickedSuggestion = event.target.closest(".suggestion-list");
       if (clickedSuggestion) {
         const suggestionId = clickedSuggestion.dataset.id;
         //클릭한 문서로 이동하기
         this.pushToUrl(suggestionId);
       }
+      this.$suggestTitle.style.display = "none";
     });
   }
   // 전체 렌더링

@@ -32,12 +32,7 @@
   position: relative;
 }
 
-.document-search-container.show .search-suggestions {
-  display: block;
-}
-
 .search-suggestions {
-  display: none;
   flex-direction: column;
   justify-content: center;
   z-index: 10;
