@@ -9,6 +9,7 @@ export default class SidebarHeader {
   }) {
     this.$target = $target;
     this.pushToUrl = pushToUrl;
+    let timeoutId;
 
     // 사이드바 헤더
     this.$header = document.createElement("div");
@@ -47,14 +48,24 @@ export default class SidebarHeader {
       searchResults(keyword);
     });
 
-    // 자동완성 리스트 렌더링 보여주기 & 숨기기
-    this.$searchBar.addEventListener("focus", () => {
-      this.$searchBarContainer.classList.toggle("show");
+    // 자동완성 리스트 보여주기
+    this.$searchBarContainer.addEventListener("mouseenter", () => {
       this.$suggestTitle.style.display = "flex";
+      clearTimeout(timeoutId);
     });
-    this.$searchBarContainer.addEventListener("onblur", () => {
-      this.$suggestTitle.style.display = "none";
-      this.$searchBarContainer.classList.toggle("show");
+
+    // search-suggestions에서 마우스가 떠나면 자동완성 리스트 숨기기
+    this.$searchBarContainer.addEventListener("mouseleave", () => {
+      timeoutId = setTimeout(() => {
+        this.$suggestTitle.style.display = "none";
+      }, 200);
+    });
+
+    // 검색바에서 포커싱 아웃되면 search-suggestions 숨기기
+    this.$searchBar.addEventListener("blur", () => {
+      timeoutId = setTimeout(() => {
+        this.$suggestTitle.style.display = "none";
+      }, 200);
     });
 
     // 자동완성 리스트

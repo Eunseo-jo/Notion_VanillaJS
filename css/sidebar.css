@@ -39,8 +39,6 @@
   background-color: #fbfbfa;
   border-radius: 4px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   position: absolute;
   top: 100%;
   left: 0;
