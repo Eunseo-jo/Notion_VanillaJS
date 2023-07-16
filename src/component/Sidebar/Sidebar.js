@@ -27,10 +27,9 @@ export default class Sidebar {
     this.sidebarList = new SidebarList({
       $target: this.$sidebarList,
       initialState: [],
-      sidebarStore: this.sidebarStore,
 
       addDocument: async (id) => {
-        const resId = await this.sidebarStore.addSubDocument(id);
+        const resId = await this.sidebarStore.addSubDocumentRequest(id);
         if (resId) {
           push(`/documents/${resId}`);
           this.setState();
@@ -41,26 +40,13 @@ export default class Sidebar {
         const { pathname } = window.location;
         const [, , postId] = pathname.split("/");
 
-        if (await this.sidebarStore.deleteDocument(id)) {
+        if (await this.sidebarStore.deleteDocumentRequest(id)) {
           if (postId === id) {
             history.replaceState(null, null, `/`);
             clearDocument();
           }
           this.setState();
         }
-      },
-
-      setActiveItem: (itemId) => {
-        const listItems = this.$sidebarList.querySelectorAll(".list-item");
-        listItems.forEach((item) => {
-          const isActive = item.dataset.id === itemId;
-
-          if (isActive) {
-            item.classList.add("active");
-          } else {
-            item.classList.remove("active");
-          }
-        });
       },
     });
 
@@ -93,7 +79,7 @@ export default class Sidebar {
 
   // 새로운 문서 API 호출
   createNewDocument = async () => {
-    const newId = await this.sidebarStore.addNewDocument();
+    const newId = await this.sidebarStore.addNewDocumentRequest();
     if (newId) {
       push(`/documents/${newId}`);
       this.setState();

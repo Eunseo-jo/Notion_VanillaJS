@@ -44,6 +44,13 @@ export default class Editor {
 
     this.$editor
       .querySelector("[name=content]")
+      .addEventListener("focusout", (e) => {
+        this.$textOptions.style.display = "none";
+        this.$textOptions.querySelector(".color-list").classList.remove("show");
+      });
+
+    this.$editor
+      .querySelector("[name=content]")
       .addEventListener("mouseup", this.handleDrag);
 
     this.$subDocument.addEventListener("click", (e) => {
@@ -110,23 +117,26 @@ export default class Editor {
 
     if (selectedText !== "" && !this.$textOptions.parentNode) {
       // 옵션 박스 위치 설정하기
-      const selection = window.getSelection();
-      const range = selection.getRangeAt(0);
-      const rect = range.getBoundingClientRect();
 
+      this.$textOptions.style.display = "flex";
       this.$textOptions.style.position = "fixed";
-      this.$textOptions.style.left = rect.left + "px";
-      this.$textOptions.style.top = rect.bottom + "px";
+      this.$textOptions.style.left = e.pageX + "px";
+      this.$textOptions.style.top = e.pageY - 55 + "px";
       this.$textOptions.style.zIndex = "10";
 
       colorList.style.position = "fixed";
-      colorList.style.left = rect.left + 70 + "px";
-      colorList.style.top = rect.bottom + 35 + "px";
+      colorList.style.left = e.pageX + 70 + "px";
+      colorList.style.top = e.pageY - 20 + "px";
       colorList.style.zIndex = "20";
 
       this.$editor.appendChild(this.$textOptions);
     } else if (!selectedText && this.$textOptions.parentNode) {
       this.$textOptions.remove();
+    }
+
+    if (selectedText === "") {
+      this.$textOptions.style.display = "none";
+      colorList.classList.remove("show");
     }
   };
 

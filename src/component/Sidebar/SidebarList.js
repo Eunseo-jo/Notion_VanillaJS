@@ -3,17 +3,9 @@ import { SIDEBAR_LIST_STORAGE_KEY } from "../../utils/constants.js";
 import { push } from "../../utils/router.js";
 
 export default class SidebarList {
-  constructor({
-    $target,
-    initialState,
-    sidebarStore,
-    deleteDocument,
-    addDocument,
-    setActiveItem,
-  }) {
+  constructor({ $target, initialState, deleteDocument, addDocument }) {
     this.$target = $target;
     this.state = initialState;
-    this.sidebarStore = sidebarStore;
 
     this.$target.addEventListener("click", (e) => {
       const target = e.target.closest(".list-item");
@@ -33,8 +25,8 @@ export default class SidebarList {
       ) {
         this.toggleList(target);
       } else {
+        target.classList.toggle("active");
         push(`/documents/${targetId}`);
-        setActiveItem(targetId);
       }
     });
 

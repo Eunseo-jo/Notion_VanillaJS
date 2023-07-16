@@ -47,7 +47,7 @@ export default class App {
 
     // 문서 조회 시
     if (pathname.startsWith("/documents/")) {
-      const data = await this.documentStore.fetchPost();
+      const data = await this.documentStore.getDocumentInfoRequest();
       if (data) {
         this.document.render();
       }

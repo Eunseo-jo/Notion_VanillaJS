@@ -127,7 +127,7 @@ export default class SidebarStore {
   };
 
   // 하위 문서 추가하기
-  addSubDocument = async (id) => {
+  addSubDocumentRequest = async (id) => {
     try {
       const resId = await addSubDocument(id);
       return resId;
@@ -138,7 +138,7 @@ export default class SidebarStore {
   };
 
   // 문서 지우기
-  deleteDocument = async (id) => {
+  deleteDocumentRequest = async (id) => {
     if (confirm("문서를 삭제하시겠습니까?")) {
       try {
         if (await deleteDocument(id)) {
@@ -146,16 +146,15 @@ export default class SidebarStore {
         }
       } catch (error) {
         console.error(error);
-        return false;
       }
     } else {
       alert("글이 삭제되지 않았습니다!");
-      return false;
     }
+    return false;
   };
 
   // 새로운 루트 문서 만들기
-  addNewDocument = async () => {
+  addNewDocumentRequest = async () => {
     try {
       const resId = await addNewDocument();
       return resId;

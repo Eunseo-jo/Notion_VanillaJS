@@ -13,7 +13,7 @@ export default class DocumentStore {
     this.state = nextState;
   };
 
-  saveDocument = async ({ title, content }) => {
+  saveDocumentRequest = async ({ title, content }) => {
     //제목이 빈칸이면 원래 제목으로 설정
     if (title?.trim() === "") {
       title = this.state.title;
@@ -26,22 +26,22 @@ export default class DocumentStore {
     return post;
   };
 
-  getDocumentContent = async (postId) => {
+  getDocumentContentRequest = async (postId) => {
     const post = await getDocumentContent(postId);
     return post;
   };
 
-  getDocumentsList = async () => {
+  getDocumentsListRequest = async () => {
     const documents = await getDocumentsList();
     return documents;
   };
 
-  fetchPost = async () => {
+  getDocumentInfoRequest = async () => {
     const { pathname } = window.location;
     const [, , postId] = pathname.split("/");
 
     if (postId) {
-      const post = await this.getDocumentContent(postId);
+      const post = await this.getDocumentContentRequest(postId);
       this.state = {
         postId: post.id,
         title: post.title,
