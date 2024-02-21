@@ -19,7 +19,7 @@ export default class Editor {
     this.$editor = document.createElement("div");
     this.$editor.classList.add("editor-container");
     this.$editor.innerHTML = `
-      <div class="title" name="title" contenteditable="true" placeholder="제목을 입력하세요"></div>
+    <textarea class="title" name="title" placeholder="제목을 입력하세요"></textarea>
       <div class="content" name="content" contenteditable="true" placeholder="내용을 입력하세요"></div>
     `;
 
@@ -37,6 +37,10 @@ export default class Editor {
     this.$editor
       .querySelector("[name=title]")
       .addEventListener("input", this.editDocument);
+
+    this.$editor
+      .querySelector("[name=title]")
+      .addEventListener("input", this.handleTitleHeight);
 
     this.$editor
       .querySelector("[name=content]")
@@ -113,6 +117,12 @@ export default class Editor {
 
       this.handleInputChange(data);
     }
+  };
+
+  handleTitleHeight = (e) => {
+    const textarea = e.target;
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
   };
 
   handleTextSelection = (e) => {
