@@ -45,8 +45,12 @@ export default class Editor {
     this.$editor
       .querySelector("[name=content]")
       .addEventListener("focusout", (e) => {
-        this.$textOptions.style.display = "none";
-        this.$textOptions.querySelector(".color-list").classList.remove("show");
+        if (!this.$textOptions.contains(e.relatedTarget)) {
+          this.$textOptions.style.display = "none";
+          this.$textOptions
+            .querySelector(".color-list")
+            .classList.remove("show");
+        }
       });
 
     this.$editor
