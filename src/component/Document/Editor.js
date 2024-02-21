@@ -55,7 +55,7 @@ export default class Editor {
 
     this.$editor
       .querySelector("[name=content]")
-      .addEventListener("mouseup", this.handleDrag);
+      .addEventListener("mouseup", this.handleTextSelection);
 
     this.$subDocument.addEventListener("click", (e) => {
       const clickedElement = e.target.closest(".sub-document-item");
@@ -115,33 +115,43 @@ export default class Editor {
     }
   };
 
-  handleDrag = (e) => {
+  handleTextSelection = (e) => {
     const selectedText = window.getSelection().toString();
+
+    if (selectedText === "") {
+      this.hideTextOptions();
+    } else {
+      this.showTextOptions(e.pageX, e.pageY);
+    }
+  };
+
+  showTextOptions = (pageX, pageY) => {
     const colorList = this.$textOptions.querySelector(".color-list");
 
-    if (selectedText !== "" && !this.$textOptions.parentNode) {
-      // 옵션 박스 위치 설정하기
+    // 옵션 박스 위치 설정하기
+    this.$textOptions.style.display = "flex";
+    this.$textOptions.style.position = "fixed";
+    this.$textOptions.style.left = pageX + "px";
+    this.$textOptions.style.top = pageY - 55 + "px";
+    this.$textOptions.style.zIndex = "10";
 
-      this.$textOptions.style.display = "flex";
-      this.$textOptions.style.position = "fixed";
-      this.$textOptions.style.left = e.pageX + "px";
-      this.$textOptions.style.top = e.pageY - 55 + "px";
-      this.$textOptions.style.zIndex = "10";
+    colorList.style.position = "fixed";
+    colorList.style.left = pageX + 70 + "px";
+    colorList.style.top = pageY - 20 + "px";
+    colorList.style.zIndex = "20";
 
-      colorList.style.position = "fixed";
-      colorList.style.left = e.pageX + 70 + "px";
-      colorList.style.top = e.pageY - 20 + "px";
-      colorList.style.zIndex = "20";
+    this.$editor.appendChild(this.$textOptions);
+  };
 
-      this.$editor.appendChild(this.$textOptions);
-    } else if (!selectedText && this.$textOptions.parentNode) {
+  hideTextOptions = () => {
+    const colorList = this.$textOptions.querySelector(".color-list");
+
+    if (this.$textOptions.parentNode) {
       this.$textOptions.remove();
     }
 
-    if (selectedText === "") {
-      this.$textOptions.style.display = "none";
-      colorList.classList.remove("show");
-    }
+    this.$textOptions.style.display = "none";
+    colorList.classList.remove("show");
   };
 
   addEventListenersToTextOptions = (textOptions) => {
