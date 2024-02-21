@@ -65,6 +65,10 @@ export default class Editor {
       .querySelector("[name=content]")
       .addEventListener("mouseup", this.handleTextSelection);
 
+    this.$editor
+      .querySelector("[name=content]")
+      .addEventListener("keydown", this.handleContentKeydownToMoveTitle);
+
     this.$subDocument.addEventListener("click", (e) => {
       const clickedElement = e.target.closest(".sub-document-item");
       if (clickedElement) {
@@ -239,6 +243,21 @@ export default class Editor {
       if (cursorPosition === titleLength) {
         e.preventDefault();
         this.$editor.querySelector("[name=content]").focus();
+      }
+    }
+  };
+
+  handleContentKeydownToMoveTitle = (e) => {
+    if (e.key === "ArrowUp") {
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const isAtStart = range.startOffset === 0 && range.endOffset === 0;
+
+        if (isAtStart) {
+          e.preventDefault();
+          this.$editor.querySelector("[name=title]").focus();
+        }
       }
     }
   };
