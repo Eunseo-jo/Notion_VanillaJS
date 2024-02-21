@@ -19,6 +19,7 @@ export default class SidebarList {
         history.replaceState(null, null, `/`);
       } else if (targetClass.contains("document-add-button")) {
         addDocument(targetId);
+        this.toggleList(target);
       } else if (
         targetClass.contains("list-toggle-button") ||
         e.target.closest(".list-toggle-button")
