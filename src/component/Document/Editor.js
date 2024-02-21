@@ -43,6 +43,10 @@ export default class Editor {
       .addEventListener("input", this.handleTitleHeight);
 
     this.$editor
+      .querySelector("[name=title]")
+      .addEventListener("keydown", this.handleTitleKeydownToMoveContent);
+
+    this.$editor
       .querySelector("[name=content]")
       .addEventListener("input", this.editDocument);
 
@@ -224,6 +228,19 @@ export default class Editor {
         e.preventDefault();
       });
     });
+  };
+
+  handleTitleKeydownToMoveContent = (e) => {
+    if (e.key === "ArrowDown") {
+      const titleElem = this.$editor.querySelector("[name=title]");
+      const cursorPosition = titleElem.selectionStart;
+      const titleLength = titleElem.value.length;
+
+      if (cursorPosition === titleLength) {
+        e.preventDefault();
+        this.$editor.querySelector("[name=content]").focus();
+      }
+    }
   };
 
   render = () => {
